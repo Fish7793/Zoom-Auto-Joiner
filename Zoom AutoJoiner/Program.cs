@@ -68,31 +68,34 @@ namespace Zoom_AutoJoiner
         {
             while (true)
             {
-                switch (DateTime.Now.DayOfWeek)
+                try
                 {
-                    case DayOfWeek.Monday:
-                        await ExecuteList(ReadFile("mon.txt"));
-                        break;
-                    case DayOfWeek.Tuesday:
-                        await ExecuteList(ReadFile("tue.txt"));
-                        break;
-                    case DayOfWeek.Wednesday:
-                        await ExecuteList(ReadFile("wed.txt"));
-                        break;
-                    case DayOfWeek.Thursday:
-                        await ExecuteList(ReadFile("thu.txt"));
-                        break;
-                    case DayOfWeek.Friday:
-                        await ExecuteList(ReadFile("fri.txt"));
-                        break;
-                    case DayOfWeek.Saturday:
-                        await ExecuteList(ReadFile("sat.txt"));
-                        break;
-                    case DayOfWeek.Sunday:
-                        await ExecuteList(ReadFile("sun.txt"));
-                        break;
+                    switch (DateTime.Now.DayOfWeek)
+                    {
+                        case DayOfWeek.Monday:
+                            await ExecuteList(ReadFile("mon.txt"));
+                            break;
+                        case DayOfWeek.Tuesday:
+                            await ExecuteList(ReadFile("tue.txt"));
+                            break;
+                        case DayOfWeek.Wednesday:
+                            await ExecuteList(ReadFile("wed.txt"));
+                            break;
+                        case DayOfWeek.Thursday:
+                            await ExecuteList(ReadFile("thu.txt"));
+                            break;
+                        case DayOfWeek.Friday:
+                            await ExecuteList(ReadFile("fri.txt"));
+                            break;
+                        case DayOfWeek.Saturday:
+                            await ExecuteList(ReadFile("sat.txt"));
+                            break;
+                        case DayOfWeek.Sunday:
+                            await ExecuteList(ReadFile("sun.txt"));
+                            break;
+                    }
                 }
-
+                catch { }
                 Console.WriteLine("Waiting until next valid day...");
                 await WaitUntil(DateTime.Now.AddDays(1) - DateTime.Now.TimeOfDay + new TimeSpan(0, 0, 1));
             }
